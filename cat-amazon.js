@@ -15,15 +15,15 @@ const cat_amazon = async (req, res) => {
         : puppeteer.executablePath(),
   });
    // Vérifier si le mot-clé et le nombre de pages sont fournis
-   if (!req.query['mot-cle']) {
+   if (!req.query['keyword']) {
     return res.status(400).json({ error: 'Le paramètre mot-cle est requis.' });
 }
-if (!req.query['nombre-pages'] || isNaN(parseInt(req.query['nombre-pages']))) {
+if (!req.query['pages'] || isNaN(parseInt(req.query['nombre-pages']))) {
     return res.status(400).json({ error: 'Le paramètre nombre-pages est requis et doit être un nombre valide.' });
 }
 
-const keyword = req.query['mot-cle'];
-const pagesToScrape = parseInt(req.query['nombre-pages']);
+const keyword = req.query['keyword'];
+const pagesToScrape = parseInt(req.query['pages']);
 try {
     const browser = await puppeteer.launch({
         headless: true,
@@ -36,7 +36,7 @@ try {
 
     for (let i = 0; i < pagesToScrape; i++) {
         // Construire l'URL avec pagination
-        let url = `https://www.amazon.fr/s?k=${encodeURIComponent(keyword)}&page=${i + 1}`;
+        let url = `https://www.amazon.com/s?k=${encodeURIComponent(keyword)}&page=${i + 1}`;
         await page.goto(url, { waitUntil: 'networkidle2' });
 
         // Accepter les cookies si nécessaire
