@@ -33,7 +33,7 @@ try {
 
     for (let i = 0; i < pagesToScrape; i++) {
         // Construire l'URL avec pagination
-        let url = `https://www.amazon.fr/s?k=${encodeURIComponent(keyword)}&page=${i + 1}`;
+        let url = `https://www.amazon.com/s?k=${encodeURIComponent(keyword)}&page=${i + 1}`;
         await page.goto(url, { waitUntil: 'networkidle2' });
 
         // Accepter les cookies si nécessaire
