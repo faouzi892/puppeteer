@@ -21,25 +21,17 @@ const scrapeLogic = async (res) => {
 
     // Set screen size
     await page.setViewport({ width: 1080, height: 1024 });
+    await page.waitForSelector("h1");
 
-    // Type into search box
-    await page.type(".search-box__input", "automate beyond recorder");
-
-    // Wait and click on first result
-    const searchResultSelector = ".search-box__link";
-    await page.waitForSelector(searchResultSelector);
-    await page.click(searchResultSelector);
-
-    // Locate the full title with a unique string
-    const textSelector = await page.waitForSelector(
-      "text/Customize and automate"
-    );
-    const fullTitle = await textSelector.evaluate((el) => el.textContent);
-
-    // Print the full title
-    const logStatement = `The title of this blog post is ${fullTitle}`;
-    console.log(logStatement);
-    res.send(logStatement);
+    // Extrait le contenu du premier h1 trouvé sur la page
+    const h1Content = await page.evaluate(() => {
+      const h1 = document.querySelector("h1");
+      return h1 ? h1.textContent.trim() : null;
+    });
+  
+    await browser.close();
+  
+    return h1Content;
   } catch (e) {
     console.error(e);
     res.send(`Something went wrong while running Puppeteer: ${e}`);
