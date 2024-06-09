@@ -12,7 +12,10 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Installer les dépendances du projet, y compris puppeteer-extra et le plugin stealth
-RUN npm install puppeteer-extra puppeteer-extra-plugin-stealth && npm ci
+RUN npm install puppeteer-extra puppeteer-extra-plugin-stealth
+
+# Installer les dépendances du projet
+RUN npm ci
 
 # Copier le reste des fichiers du projet dans le répertoire de travail
 COPY . .
