@@ -22,10 +22,15 @@ try {
     const page = await browser.newPage();
     const headers = {
       
-      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-      "Accept-Language": "en-US,en;q=0.5",
-      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0",
-      "Referer": "https://www.amazon.com/"
+        "Host": "www.amazon.com",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0",
+        "Accept": "text/html,*/*",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Accept-Encoding": "gzip, deflate, br",
+        "X-Requested-With":"XMLHttpRequest",
+        "Alt-Used": "www.amazon.com",
+        "Connection": "keep-alive",
+        "Referer": "https://www.amazon.com/"
       
   }
     await page.setExtraHTTPHeaders(headers);
