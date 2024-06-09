@@ -2,8 +2,8 @@ const puppeteer = require("puppeteer");
 require("dotenv").config();
 
 const cat_amazon = async (req, res) => {
-  // Vérifier si le mot-clé et le nombre de pages sont fournis
-  if (!req.query['mot-cle']) {
+ // Vérifier si le mot-clé et le nombre de pages sont fournis
+ if (!req.query['mot-cle']) {
     return res.status(400).json({ error: 'Le paramètre mot-cle est requis.' });
 }
 if (!req.query['nombre-pages'] || isNaN(parseInt(req.query['nombre-pages']))) {
@@ -15,18 +15,23 @@ const pagesToScrape = parseInt(req.query['nombre-pages']);
 
 try {
     const browser = await puppeteer.launch({
-        args: [
-          "--disable-setuid-sandbox",
-          "--no-sandbox",
-          "--single-process",
-          "--no-zygote",
-        ],
-        executablePath:
-          process.env.NODE_ENV === "production"
-            ? process.env.PUPPETEER_EXECUTABLE_PATH
-            : puppeteer.executablePath(),
-      });
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+    
     const page = await browser.newPage();
+    const headers = {
+      
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept-Language": "en-US,en;q=0.5",
+      "Connection": "keep-alive",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0",
+      "Referer": "https://www.amazon.com/",
+      "Alt-Used": "www.amazon.com",
+      
+  }
+    await page.setExtraHTTPHeaders(headers);
     await page.setViewport({ width: 1280, height: 800 });
 
     let allData = [];
