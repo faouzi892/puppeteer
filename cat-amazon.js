@@ -27,7 +27,6 @@ try {
         "Alt-Used" : "www.amazon.com",
         "Connection" : "keep-alive",
         "Host" : "www.amazon.com",
-        "Referer" : "https://www.amazon.com",
         "Sec-Fetch-Dest" : "empty",
         "Sec-Fetch-Mode" : "cors",
         "Sec-Fetch-Site" : "same-origin",
