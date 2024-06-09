@@ -11,12 +11,6 @@ WORKDIR /usr/src/app
 # Copier le fichier package.json et package-lock.json dans le répertoire de travail
 COPY package*.json ./
 
-# Changer les permissions pour éviter les erreurs de permission
-RUN chown -R pptruser:pptruser /usr/src/app
-
-# Passer à l'utilisateur pptruser
-USER pptruser
-
 # Installer les dépendances du projet, y compris puppeteer-extra et le plugin stealth
 RUN npm install puppeteer-extra puppeteer-extra-plugin-stealth && npm ci
 
