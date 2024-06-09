@@ -1,5 +1,5 @@
 # Utiliser une image Node.js avec un utilisateur non root
-FROM node:16
+FROM ghcr.io/puppeteer/puppeteer:19.11.1
 
 # Définir les variables d'environnement pour Puppeteer
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
