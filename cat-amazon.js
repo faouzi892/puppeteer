@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 require("dotenv").config();
-
+puppeteer.use(StealthPlugin());
 const cat_amazon = async (req, res) => {
  // Vérifier si le mot-clé et le nombre de pages sont fournis
  if (!req.query['mot-cle']) {
@@ -28,11 +29,8 @@ try {
         "Connection" : "keep-alive",
         "Host" : "www.amazon.com",
         "Referer" : "https://www.amazon.com",
-        "Sec-Fetch-Dest" : "empty",
-        "Sec-Fetch-Mode" : "cors",
-        "Sec-Fetch-Site" : "same-origin",
         "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0",
-        "X-Requested-With" : "XMLHttpRequest",
+   
       
   }
     await page.setExtraHTTPHeaders(headers);
