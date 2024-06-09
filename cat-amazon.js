@@ -27,10 +27,10 @@ try {
         "Alt-Used" : "www.amazon.com",
         "Connection" : "keep-alive",
         "Host" : "www.amazon.com",
+        "Referer" : "https://www.amazon.com",
         "Sec-Fetch-Dest" : "empty",
         "Sec-Fetch-Mode" : "cors",
         "Sec-Fetch-Site" : "same-origin",
-        "TE" : "trailers",
         "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0",
         "X-Requested-With" : "XMLHttpRequest",
       
